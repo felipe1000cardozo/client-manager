@@ -1,21 +1,41 @@
-import React, { useState, useEffect } from "react";
-import {
-  FormControl,
-  InputLabel,
-  Input,
-  InputAdornment,
-  Tooltip,
-} from "@material-ui/core";
-import { FaSearch } from "react-icons/fa";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { StyledVehiclesList } from "./styles";
+import React, { useState } from 'react';
 
-const ClientListComponent = ({ clientList, deleteClient }) => {
-  const [search, setSearch] = useState("");
-  useEffect(() => {}, []);
+import { FormControl, InputLabel, Input, InputAdornment, Tooltip } from '@material-ui/core';
+import { FaSearch } from 'react-icons/fa';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { StyledVehiclesList } from './styles';
+
+import ClientModalComponent from '../ClientModalComponent';
+import firebase from '../../firebase';
+
+const ClientListComponent = ({ clientList }) => {
+  const [search, setSearch] = useState('');
+  const [openModalClient, setOpenModalClient] = useState(false);
+  const [clientId, setClientId] = useState('');
+
+  const handleCloseModalClient = () => {
+    setOpenModalClient(false);
+    setClientId('');
+  };
+
+  const handleOpenModalClient = (id) => {
+    setClientId(id);
+    setOpenModalClient(true);
+  };
+
+  const handleDeleteClient = (id) => {
+    window.confirm('Excluir Cliente?') && firebase.app.ref('clients').child(id).remove();
+  };
 
   return (
     <StyledVehiclesList>
+      {openModalClient && (
+        <ClientModalComponent
+          clientId={clientId}
+          openModalClient={openModalClient}
+          handleCloseModalClient={handleCloseModalClient}
+        />
+      )}
       <div className="header">
         <div>
           <h2>Clientes</h2>
@@ -58,7 +78,7 @@ const ClientListComponent = ({ clientList, deleteClient }) => {
           </div>
         </div>
         {clientList.map((client, index) => (
-          <div className="list-item">
+          <div className="list-item" key={index} onClick={() => handleOpenModalClient(client.id)}>
             <div>
               <p>{index + 1}</p>
             </div>
@@ -74,8 +94,13 @@ const ClientListComponent = ({ clientList, deleteClient }) => {
               </p>
             </div>
             <div>
-              <Tooltip title="Excluir veículo" placement="top">
-                <button>
+              <Tooltip title="Excluir cliente" placement="top">
+                <button
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    handleDeleteClient(client.id);
+                  }}
+                >
                   <RiDeleteBin6Line size="20" />
                 </button>
               </Tooltip>

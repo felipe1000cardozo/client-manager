@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledVehiclesList = styled.main`
   .header {
@@ -32,7 +32,7 @@ export const StyledVehiclesList = styled.main`
     border-top: 1px solid #ccc;
     padding: 14px;
     cursor: pointer;
-    transition: background-color 0.5s;
+    /* transition: background-color 0.5s ease-out; */
     > div {
       text-align: center;
       width: 22%;

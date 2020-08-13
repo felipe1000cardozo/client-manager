@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledAdminPainel = styled.main`
+  margin: 25px 0;
   .container-buttons {
     display: flex;
     justify-content: space-between;

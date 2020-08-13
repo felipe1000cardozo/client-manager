@@ -1,57 +1,64 @@
-[
-  {
-    "name": "Fulano Trajano Ciclano da Silva Saulo",
-    "phone": "(48)3333-3333",
-    "adress": {
-      "street": "Avenida Brasil de serra leoa",
-      "number": "3456785",
-      "district": "Jacinto melo rego",
-      "complement": "ap-29, bloco- 500",
-      "deliveryPrice": 0
-    }
-  },
-  {
-    "name": "Fulano Trajano Ciclano da Silva Saulo",
-    "phone": "(48)3333-3333",
-    "adress": {
-      "street": "Avenida Brasil de serra leoa",
-      "number": "3456785",
-      "district": "Jacinto melo rego",
-      "complement": "ap-29, bloco- 500",
-      "deliveryPrice": 0
-    }
-  },
-  {
-    "name": "Fulano Trajano Ciclano da Silva Saulo",
-    "phone": "(48)3333-3333",
-    "adress": {
-      "street": "Avenida Brasil de serra leoa",
-      "number": "3456785",
-      "district": "Jacinto melo rego",
-      "complement": "ap-29, bloco- 500",
-      "deliveryPrice": 0
-    }
-  },
-  {
-    "name": "Fulano Trajano Ciclano da Silva Saulo",
-    "phone": "(48)3333-3333",
-    "adress": {
-      "street": "Avenida Brasil de serra leoa",
-      "number": "3456785",
-      "district": "Jacinto melo rego",
-      "complement": "ap-29, bloco- 500",
-      "deliveryPrice": 0
-    }
-  },
-  {
-    "name": "Fulano Trajano Ciclano da Silva Saulo",
-    "phone": "(48)3333-3333",
-    "adress": {
-      "street": "Avenida Brasil de serra leoa",
-      "number": "3456785",
-      "district": "Jacinto melo rego",
-      "complement": "ap-29, bloco- 500",
-      "deliveryPrice": 0
+{
+  "clients": {
+    "0": {
+      "id": "0",
+      "name": "Fulano Trajano Ciclano da Silva Saulo",
+      "phone": "(48)3333-3333",
+      "adress": {
+        "street": "Avenida Brasil de serra leoa",
+        "number": "3456785",
+        "district": "Jacinto melo rego",
+        "complement": "ap-29, bloco- 500",
+        "deliveryPrice": 0
+      }
+    },
+    "1": {
+      "id": "1",
+      "name": "Silva Saulo",
+      "phone": "(48)3333-3333",
+      "adress": {
+        "street": "Avenida Brasil de serra leoa",
+        "number": "3456785",
+        "district": "Jacinto melo rego",
+        "complement": "ap-29, bloco- 500",
+        "deliveryPrice": 0
+      }
+    },
+    "2": {
+      "id": "2",
+      "name": "Saulo",
+      "phone": "(48)3333-3333",
+      "adress": {
+        "street": "Avenida Brasil de serra leoa",
+        "number": "3456785",
+        "district": "Jacinto melo rego",
+        "complement": "ap-29, bloco- 500",
+        "deliveryPrice": 0
+      }
+    },
+    "3": {
+      "id": "3",
+      "name": "Fulano Trajano Ciclano da Silva Saulo",
+      "phone": "(48)3333-3333",
+      "adress": {
+        "street": "Avenida Brasil de serra leoa",
+        "number": "3456785",
+        "district": "Jacinto melo rego",
+        "complement": "ap-29, bloco- 500",
+        "deliveryPrice": 0
+      }
+    },
+    "4": {
+      "id": "4",
+      "name": "Fulano Trajano Ciclano da Silva Saulo",
+      "phone": "(48)3333-3333",
+      "adress": {
+        "street": "Avenida Brasil de serra leoa",
+        "number": "3456785",
+        "district": "Jacinto melo rego",
+        "complement": "ap-29, bloco- 500",
+        "deliveryPrice": 0
+      }
     }
   }
-]
+}

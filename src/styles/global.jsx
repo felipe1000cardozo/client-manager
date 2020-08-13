@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   :root{
@@ -43,6 +43,7 @@ export default createGlobalStyle`
     -webkit-box-shadow: 0px 0px 10px 0px rgba(180,180,180,1);
     -moz-box-shadow: 0px 0px 10px 0px rgba(180,180,180,1);
     box-shadow: 0px 0px 10px 0px rgba(180,180,180,1);
+    border-radius: 6px;
  }
  ::placeholder{
     color: var(--text-color);
