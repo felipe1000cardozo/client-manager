@@ -35,11 +35,19 @@ const NewClientModalComponent = (props) => {
     setNewClient((n) => {
       return { ...n, id: newClientKey };
     });
+    // eslint-disable-next-line
   }, [open]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     firebaseClients.child(newClient.id).set(newClient);
+    setNewClient(clientDefault);
+    handleClose();
+  };
+
+  const handleClickCancel = () => {
+    setNewClient(clientDefault);
+    handleClose();
   };
 
   return (
@@ -135,16 +143,10 @@ const NewClientModalComponent = (props) => {
           </div>
 
           <DialogActions id="dialog-footer">
-            <Button variant="contained" size="small" color="secondary" onClick={handleClose}>
+            <Button variant="contained" size="small" color="secondary" onClick={handleClickCancel}>
               Cancelar
             </Button>
-            <Button
-              variant="contained"
-              size="small"
-              color="primary"
-              type="submit"
-              onClick={() => handleClose()}
-            >
+            <Button variant="contained" size="small" color="primary" type="submit">
               Cadastrar
             </Button>
           </DialogActions>

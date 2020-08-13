@@ -41,6 +41,7 @@ const ClientModalComponent = (props) => {
         }
         setLoading(false);
       });
+    // eslint-disable-next-line
   }, []);
 
   // useEffect(() => {
