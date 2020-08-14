@@ -118,7 +118,7 @@ const NewClientModalComponent = (props) => {
               <TextField
                 label="Número"
                 placeholder="Número"
-                type="number"
+                type="text"
                 value={newClient.adress.number}
                 onChange={(event) =>
                   setNewClient({
