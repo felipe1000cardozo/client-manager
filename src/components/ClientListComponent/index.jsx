@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { FormControl, InputLabel, Input, InputAdornment, Tooltip } from '@material-ui/core';
 import { FaSearch } from 'react-icons/fa';
@@ -25,6 +25,10 @@ const ClientListComponent = ({ clientList }) => {
       })
     );
   };
+
+  useEffect(() => {
+    setFilteredClientList(clientList);
+  }, [clientList]);
 
   const handleCloseModalClient = () => {
     setOpenModalClient(false);
