@@ -1,5 +1,6 @@
 import React from 'react';
-import Dialog from '@material-ui/core/Dialog';
+// import Dialog from '@material-ui/core/Dialog';
+import Dialog from './styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import { FormContainer } from '../../pages/Dashboard/styles';
@@ -11,6 +12,8 @@ import { useEffect } from 'react';
 import PreLoader from '../PreLoader';
 
 import firebase from '../../firebase';
+import getFullDate from '../../utils/getFullDate';
+import HistoricComponent from '../HistoricComponent';
 
 const clientDefault = {
   id: '',
@@ -24,10 +27,16 @@ const clientDefault = {
     deliveryPrice: 0,
   },
 };
+const newOrderDefault = {
+  order: '',
+  date: '',
+};
 
 const ClientModalComponent = (props) => {
   const [client, setClient] = useState(clientDefault);
   const [loading, setLoading] = useState(true);
+
+  const [newOrder, setNewOrder] = useState(newOrderDefault);
 
   const { openModalClient, handleCloseModalClient, clientId } = props;
 
@@ -49,13 +58,35 @@ const ClientModalComponent = (props) => {
   //   console.log(clientList.filter((client) => client.id === clientId));
   // }, []);
 
+  const handleSubmitOrder = (event) => {
+    event.preventDefault();
+    if (!client.historic) {
+      firebase.app.ref('clients').child(clientId).child('historic').set([newOrder]);
+    } else {
+      firebase.app
+        .ref('clients')
+        .child(clientId)
+        .child('historic')
+        .set([...client.historic, newOrder]);
+    }
+    setNewOrder(newOrderDefault);
+  };
+
+  const handleOnChange = (event) => {
+    const now = new Date();
+    setNewOrder({ date: getFullDate(now), order: event.target.value });
+  };
+
   return (
     <Dialog
       open={openModalClient}
       onClose={handleCloseModalClient}
       aria-labelledby="form-dialog-title"
     >
-      <DialogTitle id="form-dialog-title">Adicionar novo cliente</DialogTitle>
+      <DialogTitle id="form-dialog-title">
+        <span>{client.name}</span>
+        <span>{client.phone}</span>
+      </DialogTitle>
 
       <DialogContent>
         {loading ? (
@@ -63,80 +94,34 @@ const ClientModalComponent = (props) => {
             <PreLoader />
           </Dialog>
         ) : (
-          <FormContainer>
-            <div id="container-simple-inputs">
-              <div>
-                <TextField
-                  label="Nome"
-                  placeholder="Nome"
-                  value={client.name}
-                  onChange={(event) => setClient({ ...client, name: event.target.value })}
-                />
-                <h3 id="adress-tag">Endereço</h3>
-                <TextField
-                  label="Rua"
-                  placeholder="Rua"
-                  value={client.adress.street}
-                  onChange={(event) =>
-                    setClient({
-                      ...client,
-                      adress: { ...client.adress, street: event.target.value },
-                    })
-                  }
-                />
-
-                <TextField
-                  label="Valor entrega"
-                  placeholder="Valor entrega"
-                  type="number"
-                  value={client.adress.deliveryPrice}
-                  onChange={(event) =>
-                    setClient({
-                      ...client,
-                      adress: {
-                        ...client.adress,
-                        deliveryPrice: Number(event.target.value),
-                      },
-                    })
-                  }
-                />
+          <>
+            <div id="Modal-body">
+              <div className="row-modal">
+                <span className="adress-row">{`${client.adress.street}, ${client.adress.number}`}</span>
+                <span className="adress-row">{`${client.adress.district}, ${client.adress.complement}`}</span>
               </div>
-
-              <div>
-                <TextField
-                  label="Telefone"
-                  placeholder="Telefone"
-                  type="tel"
-                  value={client.phone}
-                  onChange={(event) => setClient({ ...client, phone: event.target.value })}
-                />
-                <span id="tel-input"></span>
-
-                <TextField
-                  label="Número"
-                  placeholder="Número"
-                  type="number"
-                  value={client.adress.number}
-                  onChange={(event) =>
-                    setClient({
-                      ...client,
-                      adress: { ...client.adress, number: event.target.value },
-                    })
-                  }
-                />
-
-                <TextField
-                  label="Complemento"
-                  placeholder="Complemento"
-                  value={client.adress.complement}
-                  onChange={(event) =>
-                    setClient({
-                      ...client,
-                      adress: { ...client.adress, complement: event.target.value },
-                    })
-                  }
-                />
+              <div className="row-modal">
+                <FormContainer
+                  onSubmit={(event) => {
+                    handleSubmitOrder(event);
+                  }}
+                >
+                  <TextField
+                    id="outlined-multiline-static"
+                    label="Novo Pedido"
+                    multiline
+                    rows={4}
+                    value={newOrder.order}
+                    onChange={(event) => handleOnChange(event)}
+                    variant="outlined"
+                    fullWidth
+                  />
+                  <Button variant="contained" size="small" color="primary" type="submit">
+                    Adicionar Pedido
+                  </Button>
+                </FormContainer>
               </div>
+              {client.historic && <HistoricComponent className="row-modal" client={client} />}
             </div>
 
             <DialogActions id="dialog-footer">
@@ -146,19 +131,10 @@ const ClientModalComponent = (props) => {
                 color="secondary"
                 onClick={handleCloseModalClient}
               >
-                Cancelar
-              </Button>
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                // type="submit"
-                onClick={() => console.log(client)}
-              >
-                Cadastrar
+                Sair
               </Button>
             </DialogActions>
-          </FormContainer>
+          </>
         )}
       </DialogContent>
     </Dialog>

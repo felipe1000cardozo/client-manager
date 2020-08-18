@@ -1,0 +1,128 @@
+{
+  "clients": {
+    "-MEa0qFaQWd3fw1OVp7o": {
+      "historic": [
+        { "order": "x-salada", "date": "17 agosto 2020, 17:56" },
+        { "order": "x-bacon", "date": "17 agosto 2020, 17:56" }
+      ],
+      "adress": {
+        "complement": "Casa",
+        "deliveryPrice": 0,
+        "district": "Areias",
+        "number": "305",
+        "street": "Manuel Bandeira"
+      },
+      "id": "-MEa0qFaQWd3fw1OVp7o",
+      "name": "Felipe",
+      "phone": "(48)984960284"
+    },
+    "-MEdwGLAtFFgqi1zi1Qv": {
+      "adress": {
+        "complement": "Ap-501",
+        "deliveryPrice": 3,
+        "district": "",
+        "number": "",
+        "street": ""
+      },
+      "id": "-MEdwGLAtFFgqi1zi1Qv",
+      "name": "Augusto/mari",
+      "phone": "48988249991"
+    },
+    "-MEdx-5SFPvaAIRyP9mz": {
+      "adress": {
+        "complement": "ap 206",
+        "deliveryPrice": 5,
+        "district": "Kobrasol",
+        "number": "680",
+        "street": "Av. Lédio Martins"
+      },
+      "id": "-MEdx-5SFPvaAIRyP9mz",
+      "name": "Cláudio Henrique Moreira",
+      "phone": "996257652 ou 991380366"
+    },
+    "-MEe1fPfhlsHFQbZ2POc": {
+      "adress": {
+        "complement": "Próximo à igreja católica",
+        "deliveryPrice": 3,
+        "district": "Jardim Cidade",
+        "number": "987",
+        "street": "Pedro Bunn"
+      },
+      "id": "-MEe1fPfhlsHFQbZ2POc",
+      "name": "Davi Mozer",
+      "phone": "48 996762816"
+    },
+    "-MEe3PqzBvB6rWKOkvtD": {
+      "adress": {
+        "complement": "ap 302",
+        "deliveryPrice": 3,
+        "district": "Areias",
+        "number": "1256",
+        "street": "Rua da Independência"
+      },
+      "id": "-MEe3PqzBvB6rWKOkvtD",
+      "name": "Amanda",
+      "phone": "996204891"
+    },
+    "-MEe3mzNzjAa-vN9m04n": {
+      "adress": {
+        "complement": "Bl 8 Ap 103 Compasso do sol",
+        "deliveryPrice": 3,
+        "district": "",
+        "number": "477",
+        "street": "Rua Zione Berkembrok"
+      },
+      "id": "-MEe3mzNzjAa-vN9m04n",
+      "name": "Mirian",
+      "phone": "984649296"
+    },
+    "-MEjEv5TAfAnTtYafDy-": {
+      "adress": {
+        "complement": "bl 2 ap 402 Cond. Village das Ilhas",
+        "deliveryPrice": 3,
+        "district": "Serraria",
+        "number": "365",
+        "street": "Padre Raulino Reitz"
+      },
+      "id": "-MEjEv5TAfAnTtYafDy-",
+      "name": "Ilse",
+      "phone": "996602921"
+    },
+    "-MEjVJfyPOyBmv_g9NPs": {
+      "adress": {
+        "complement": "",
+        "deliveryPrice": 3,
+        "district": "Bela vista 2",
+        "number": "308",
+        "street": "Rua Porto Alegre "
+      },
+      "id": "-MEjVJfyPOyBmv_g9NPs",
+      "name": "Patrícia",
+      "phone": "991267208"
+    },
+    "-MEoK6tNEIhEPvOXiyjS": {
+      "adress": {
+        "complement": "",
+        "deliveryPrice": 3,
+        "district": "Nossa sra do Rosário",
+        "number": "543 bl 4 ap 2",
+        "street": "Rua Pedro André Hermes "
+      },
+      "id": "-MEoK6tNEIhEPvOXiyjS",
+      "name": "Sheila",
+      "phone": "991692315"
+    },
+    "-MEoYIy2GYRZebx66pMA": {
+      "adress": {
+        "complement": "",
+        "deliveryPrice": 3,
+        "district": "Serraria",
+        "number": "1371",
+        "street": "Rua Dona Lídia"
+      },
+      "id": "-MEoYIy2GYRZebx66pMA",
+      "name": "Flávio",
+      "phone": "998228131"
+    }
+  }
+}

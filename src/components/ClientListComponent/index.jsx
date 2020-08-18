@@ -12,6 +12,19 @@ const ClientListComponent = ({ clientList }) => {
   const [search, setSearch] = useState('');
   const [openModalClient, setOpenModalClient] = useState(false);
   const [clientId, setClientId] = useState('');
+  const [filteredClientList, setFilteredClientList] = useState(clientList);
+
+  const handleFilter = (event) => {
+    setSearch(event.target.value);
+    setFilteredClientList(
+      clientList.filter((client) => {
+        return (
+          client.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
+          client.phone.toLowerCase().includes(event.target.value.toLowerCase())
+        );
+      })
+    );
+  };
 
   const handleCloseModalClient = () => {
     setOpenModalClient(false);
@@ -48,7 +61,7 @@ const ClientListComponent = ({ clientList }) => {
                 id="standard-adornment"
                 type="text"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => handleFilter(e)}
                 endAdornment={
                   <InputAdornment position="end">
                     <FaSearch color="#737373" />
@@ -77,7 +90,7 @@ const ClientListComponent = ({ clientList }) => {
             <h4>Excluir</h4>
           </div>
         </div>
-        {clientList.map((client, index) => (
+        {filteredClientList.map((client, index) => (
           <div className="list-item" key={index} onClick={() => handleOpenModalClient(client.id)}>
             <div>
               <p>{index + 1}</p>
