@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const StyledHistoricComponent = styled.div`
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 12px;
-  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column-reverse;
   .order-item-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 6px;
     display: flex;
     flex-direction: column;
     .order-title {
