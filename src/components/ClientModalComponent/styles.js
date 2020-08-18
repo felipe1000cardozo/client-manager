@@ -6,6 +6,7 @@ export default styled(Dialog)`
     .MuiDialogTitle-root h2 {
       display: flex;
       justify-content: space-between;
+      min-width: 530px;
     }
     .row-modal {
       display: flex;
