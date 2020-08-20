@@ -63,7 +63,7 @@ const EditClientModalComponent = (props) => {
       onClose={handleCloseModalEditClient}
       aria-labelledby="form-dialog-title"
     >
-      <DialogTitle id="form-dialog-title">Editar cliente {clientId}</DialogTitle>
+      <DialogTitle id="form-dialog-title">Editar cliente</DialogTitle>
 
       <DialogContent>
         {loading ? (
