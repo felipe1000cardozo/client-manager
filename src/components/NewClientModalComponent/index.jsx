@@ -5,10 +5,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { FormContainer } from '../../pages/Dashboard/styles';
 import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
-import { Button } from '@material-ui/core';
+import { Button, Tooltip } from '@material-ui/core';
 import { useState } from 'react';
+import { RiTreasureMapLine } from 'react-icons/ri';
 
 import firebase from '../../firebase';
+import calculateRoutes from '../../utils/calculateRoutes';
 
 const clientDefault = {
   id: '',
@@ -25,6 +27,7 @@ const clientDefault = {
 
 const NewClientModalComponent = (props) => {
   const [newClient, setNewClient] = useState(clientDefault);
+  const [distance, setDistance] = useState('');
 
   const { open, handleClose } = props;
 
@@ -48,6 +51,16 @@ const NewClientModalComponent = (props) => {
   const handleClickCancel = () => {
     setNewClient(clientDefault);
     handleClose();
+  };
+
+  const handleCalculateDistance = () => {
+    setNewClient({
+      ...newClient,
+      adress: {
+        ...newClient.adress,
+        deliveryPrice: calculateRoutes(distance),
+      },
+    });
   };
 
   return (
@@ -114,7 +127,6 @@ const NewClientModalComponent = (props) => {
                 onChange={(event) => setNewClient({ ...newClient, phone: event.target.value })}
               />
               <span id="tel-input"></span>
-
               <TextField
                 label="Número"
                 placeholder="Número"
@@ -127,7 +139,6 @@ const NewClientModalComponent = (props) => {
                   })
                 }
               />
-
               <TextField
                 label="Complemento"
                 placeholder="Complemento"
@@ -139,6 +150,26 @@ const NewClientModalComponent = (props) => {
                   })
                 }
               />
+              <div className="calculate-input-container">
+                <TextField
+                  onChange={(e) => setDistance(e.target.value)}
+                  value={distance}
+                  type="number"
+                  label="Distância"
+                  placeholder="Distância"
+                />
+
+                <Tooltip placement="top-start" title="Calcular valor da entrega">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                    onClick={handleCalculateDistance}
+                  >
+                    <RiTreasureMapLine size="20" />
+                  </Button>
+                </Tooltip>
+              </div>
             </div>
           </div>
 

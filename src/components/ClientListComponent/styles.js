@@ -52,5 +52,10 @@ export const StyledVehiclesList = styled.main`
     &:hover {
       background-color: #ccc;
     }
+    .delete-icon {
+      &:hover {
+        color: red;
+      }
+    }
   }
 `;

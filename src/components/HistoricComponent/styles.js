@@ -14,6 +14,17 @@ export const StyledHistoricComponent = styled.div`
       font-weight: bold;
       font-size: 16px;
       color: #555;
+      display: flex;
+      justify-content: space-between;
+      button {
+        border: none;
+        background-color: none;
+        svg {
+          &:hover {
+            color: red;
+          }
+        }
+      }
     }
     .order {
       padding: 6px 0px 6px 12px;

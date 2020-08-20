@@ -72,6 +72,13 @@ const ClientModalComponent = (props) => {
     setNewOrder(newOrderDefault);
   };
 
+  const handleDeleteOrder = (index) => {
+    let list = JSON.parse(JSON.stringify(client.historic));
+
+    list.splice(index, 1);
+    firebase.app.ref('clients').child(clientId).child('historic').set(list);
+  };
+
   const handleOnChange = (event) => {
     const now = new Date();
     setNewOrder({ date: getFullDate(now), order: event.target.value });
@@ -97,8 +104,15 @@ const ClientModalComponent = (props) => {
           <>
             <div id="Modal-body">
               <div className="row-modal">
-                <span className="adress-row">{`${client.adress.street}, ${client.adress.number}`}</span>
-                <span className="adress-row">{`${client.adress.district}, ${client.adress.complement}`}</span>
+                <span className="adress-row">{`${client.adress.street}${
+                  client.adress.street && client.adress.number && ','
+                } ${client.adress.number}`}</span>
+                <span className="adress-row">{`${client.adress.district}${
+                  client.adress.district && client.adress.complement && ','
+                } ${client.adress.complement}`}</span>
+                <span className="adress-row">
+                  Entrega: R$ {client.adress.deliveryPrice.toFixed(2)}
+                </span>
               </div>
               <div className="row-modal">
                 <FormContainer
@@ -121,7 +135,13 @@ const ClientModalComponent = (props) => {
                   </Button>
                 </FormContainer>
               </div>
-              {client.historic && <HistoricComponent className="row-modal" client={client} />}
+              {client.historic && (
+                <HistoricComponent
+                  className="row-modal"
+                  client={client}
+                  handleDeleteOrder={handleDeleteOrder}
+                />
+              )}
             </div>
 
             <DialogActions id="dialog-footer">

@@ -29,6 +29,15 @@ export const FormContainer = styled.form`
       color: rgba(0, 0, 0, 0.7);
       padding: 32px 0 0 0;
     }
+    .calculate-input-container {
+      display: flex;
+      align-items: flex-end;
+      button {
+        min-width: 0;
+        height: fit-content;
+        margin-left: 6px;
+      }
+    }
     #tel-input {
       height: 51px;
     }

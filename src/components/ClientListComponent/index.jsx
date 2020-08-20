@@ -3,14 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { FormControl, InputLabel, Input, InputAdornment, Tooltip } from '@material-ui/core';
 import { FaSearch } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { GrEdit } from 'react-icons/gr';
 import { StyledVehiclesList } from './styles';
 
 import ClientModalComponent from '../ClientModalComponent';
 import firebase from '../../firebase';
+import EditClientModalComponent from '../EditClientModalComponent';
 
 const ClientListComponent = ({ clientList }) => {
   const [search, setSearch] = useState('');
   const [openModalClient, setOpenModalClient] = useState(false);
+  const [openModalEditClient, setOpenModalEditClient] = useState(false);
   const [clientId, setClientId] = useState('');
   const [filteredClientList, setFilteredClientList] = useState(clientList);
 
@@ -35,9 +38,19 @@ const ClientListComponent = ({ clientList }) => {
     setClientId('');
   };
 
+  const handleCloseModalEditClient = () => {
+    setOpenModalEditClient(false);
+    setClientId('');
+  };
+
   const handleOpenModalClient = (id) => {
     setClientId(id);
     setOpenModalClient(true);
+  };
+
+  const handleOpenModalEditClient = (id) => {
+    setClientId(id);
+    setOpenModalEditClient(true);
   };
 
   const handleDeleteClient = (id) => {
@@ -53,6 +66,15 @@ const ClientListComponent = ({ clientList }) => {
           handleCloseModalClient={handleCloseModalClient}
         />
       )}
+
+      {openModalEditClient && (
+        <EditClientModalComponent
+          clientId={clientId}
+          openModalEditClient={openModalEditClient}
+          handleCloseModalEditClient={handleCloseModalEditClient}
+        />
+      )}
+
       <div className="header">
         <div>
           <h2>Clientes</h2>
@@ -91,7 +113,7 @@ const ClientListComponent = ({ clientList }) => {
             <h4>Endereço</h4>
           </div>
           <div>
-            <h4>Excluir</h4>
+            <h4>Ações</h4>
           </div>
         </div>
         {filteredClientList.map((client, index) => (
@@ -107,7 +129,8 @@ const ClientListComponent = ({ clientList }) => {
             </div>
             <div>
               <p>
-                {client.adress.street}, {client.adress.number}
+                {client.adress.street}
+                {client.adress.street && client.adress.number && ','} {client.adress.number}
               </p>
             </div>
             <div>
@@ -118,7 +141,17 @@ const ClientListComponent = ({ clientList }) => {
                     handleDeleteClient(client.id);
                   }}
                 >
-                  <RiDeleteBin6Line size="20" />
+                  <RiDeleteBin6Line className="delete-icon" size="20" />
+                </button>
+              </Tooltip>
+              <Tooltip title="Editar cliente" placement="top">
+                <button
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    handleOpenModalEditClient(client.id);
+                  }}
+                >
+                  <GrEdit size="20" />
                 </button>
               </Tooltip>
             </div>

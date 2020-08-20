@@ -27,4 +27,14 @@ export default styled(Dialog)`
       }
     }
   }
+
+  @media (max-width: 740px) {
+    .MuiDialogTitle-root h2 {
+      min-width: none;
+      flex-wrap: wrap;
+      span {
+        width: 100%;
+      }
+    }
+  }
 `;
