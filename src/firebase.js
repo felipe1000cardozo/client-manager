@@ -18,12 +18,6 @@ class Firebase {
 
     this.app = app.database();
   }
-
-  isInitialized() {
-    return new Promise((resolve) => {
-      app.auth().onAuthStateChanged(resolve);
-    });
-  }
 }
 
 export default new Firebase();
