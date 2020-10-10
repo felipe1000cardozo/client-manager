@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { FormControl, InputLabel, Input, InputAdornment, Tooltip } from '@material-ui/core';
-import { FaSearch } from 'react-icons/fa';
-import { RiDeleteBin6Line } from 'react-icons/ri';
-import { GrEdit } from 'react-icons/gr';
-import { StyledVehiclesList } from './styles';
+import {
+  FormControl,
+  InputLabel,
+  Input,
+  InputAdornment,
+  Tooltip,
+} from "@material-ui/core";
+import { FaSearch } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { GrEdit } from "react-icons/gr";
+import { BsCaretDown, BsCaretUp } from "react-icons/bs";
 
-import ClientModalComponent from '../ClientModalComponent';
-import firebase from '../../firebase';
-import EditClientModalComponent from '../EditClientModalComponent';
+import { StyledVehiclesList } from "./styles";
+
+import ClientModalComponent from "../ClientModalComponent";
+import firebase from "../../firebase";
+import EditClientModalComponent from "../EditClientModalComponent";
 
 const ClientListComponent = ({ clientList }) => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [openModalClient, setOpenModalClient] = useState(false);
   const [openModalEditClient, setOpenModalEditClient] = useState(false);
-  const [clientId, setClientId] = useState('');
+  const [clientId, setClientId] = useState("");
   const [filteredClientList, setFilteredClientList] = useState(clientList);
 
   const handleFilter = (event) => {
@@ -22,7 +30,9 @@ const ClientListComponent = ({ clientList }) => {
     setFilteredClientList(
       clientList.filter((client) => {
         return (
-          client.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
+          client.name
+            .toLowerCase()
+            .includes(event.target.value.toLowerCase()) ||
           client.phone.toLowerCase().includes(event.target.value.toLowerCase())
         );
       })
@@ -35,12 +45,12 @@ const ClientListComponent = ({ clientList }) => {
 
   const handleCloseModalClient = () => {
     setOpenModalClient(false);
-    setClientId('');
+    setClientId("");
   };
 
   const handleCloseModalEditClient = () => {
     setOpenModalEditClient(false);
-    setClientId('');
+    setClientId("");
   };
 
   const handleOpenModalClient = (id) => {
@@ -54,7 +64,8 @@ const ClientListComponent = ({ clientList }) => {
   };
 
   const handleDeleteClient = (id) => {
-    window.confirm('Excluir Cliente?') && firebase.app.ref('clients').child(id).remove();
+    window.confirm("Excluir Cliente?") &&
+      firebase.app.ref("clients").child(id).remove();
   };
 
   return (
@@ -116,47 +127,63 @@ const ClientListComponent = ({ clientList }) => {
             <h4>Ações</h4>
           </div>
         </div>
-        {filteredClientList.map((client, index) => (
-          <div className="list-item" key={index} onClick={() => handleOpenModalClient(client.id)}>
-            <div>
-              <p>{index + 1}</p>
+        {console.log(filteredClientList)}
+        {filteredClientList
+          .sort(function (a, b) {
+            if (a.name > b.name) {
+              return 1;
+            }
+            if (a.name < b.name) {
+              return -1;
+            }
+            return 0;
+          })
+          .map((client, index) => (
+            <div
+              className="list-item"
+              key={index}
+              onClick={() => handleOpenModalClient(client.id)}
+            >
+              <div>
+                <p>{index + 1}</p>
+              </div>
+              <div>
+                <p>{client.name}</p>
+              </div>
+              <div>
+                <p>{client.phone}</p>
+              </div>
+              <div>
+                <p>
+                  {client.adress.street}
+                  {client.adress.street && client.adress.number && ","}{" "}
+                  {client.adress.number}
+                </p>
+              </div>
+              <div>
+                <Tooltip title="Excluir cliente" placement="top">
+                  <button
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleDeleteClient(client.id);
+                    }}
+                  >
+                    <RiDeleteBin6Line className="delete-icon" size="20" />
+                  </button>
+                </Tooltip>
+                <Tooltip title="Editar cliente" placement="top">
+                  <button
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleOpenModalEditClient(client.id);
+                    }}
+                  >
+                    <GrEdit size="20" />
+                  </button>
+                </Tooltip>
+              </div>
             </div>
-            <div>
-              <p>{client.name}</p>
-            </div>
-            <div>
-              <p>{client.phone}</p>
-            </div>
-            <div>
-              <p>
-                {client.adress.street}
-                {client.adress.street && client.adress.number && ','} {client.adress.number}
-              </p>
-            </div>
-            <div>
-              <Tooltip title="Excluir cliente" placement="top">
-                <button
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    handleDeleteClient(client.id);
-                  }}
-                >
-                  <RiDeleteBin6Line className="delete-icon" size="20" />
-                </button>
-              </Tooltip>
-              <Tooltip title="Editar cliente" placement="top">
-                <button
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    handleOpenModalEditClient(client.id);
-                  }}
-                >
-                  <GrEdit size="20" />
-                </button>
-              </Tooltip>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
     </StyledVehiclesList>
   );
