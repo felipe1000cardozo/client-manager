@@ -1,16 +1,16 @@
-import React from 'react';
-import { Tooltip } from '@material-ui/core';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+import React from "react";
+import { Tooltip } from "@material-ui/core";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const HistoricItemComponent = ({ index, item, handleDeleteOrder }) => {
   function createMarkup() {
-    return { __html: item.order.replace(/\//g, '<br>') };
+    return { __html: item.order.replace(/\//g, "<br>") };
   }
 
   return (
     <div className="order-item-container">
       <div className="order-title">
-        {`Pedido - ${index + 1}`}{' '}
+        {`Pedido - ${index + 1}`}{" "}
         <Tooltip title="Excluir pedido" placement="top">
           <button
             onClick={(event) => {

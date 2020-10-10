@@ -18,7 +18,7 @@ export const StyledHistoricComponent = styled.div`
       justify-content: space-between;
       button {
         border: none;
-        background-color: none;
+        background-color: var(--four-color);
         svg {
           &:hover {
             color: red;
