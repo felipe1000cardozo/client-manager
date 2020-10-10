@@ -10,7 +10,6 @@ import {
 import { FaSearch } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { GrEdit } from "react-icons/gr";
-import { BsCaretDown, BsCaretUp } from "react-icons/bs";
 
 import { StyledVehiclesList } from "./styles";
 
